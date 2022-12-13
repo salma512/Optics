@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Staffs extends Model
 {
     use HasFactory;
-    Public function users()
+    Public function user()
     {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
     Public function agencies()
     {
