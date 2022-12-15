@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('staff_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('isAdmin')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->boolean('isValidate')->nullable();
