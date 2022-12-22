@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Models\Brands;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class BrandsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Products::all();
+        return Brands::all();
     }
 
     /**
@@ -36,23 +36,12 @@ class ProductsController extends Controller
     public function store()
     {
         request()->validate([
-             'agency_id'=> 'required',
-             'categorie_id'=> 'required',
-             'brand_id' => 'required',
-            'price' => 'required',
             'name' => 'required',
-            'description' => 'required',
-            'photos' => 'required',
+
         ]);
 
-        return Products::create([
-             'agency_id' => request('agency_id'),
-             'categorie_id' => request('categorie_id'),
-             'brand_id' => request('brand_id'),
-            'price' => request('price'),
+        return Brands::create([
             'name' => request('name'),
-            'description' => request('description'),
-            'photos' => request('photos'),
         ]);
     }
 
@@ -85,26 +74,14 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Products $products)
+    public function update(Brands $brands)
     {
         request()->validate([
-             'agency_id'=> 'required',
-            'categorie_id'=> 'required',
-            'brand_id' => 'required',
-            'price' => 'required',
             'name' => 'required',
-            'description' => 'required',
-            'photos' => 'required',
         ]);
 
-        $success = $products->update([
-            'agency_id' => request('agency_id'),
-            'categorie_id' => request('categorie_id'),
-            'brand_id' => request('brand_id'),
-            'price' => request('price'),
+        $success = $brands->update([
             'name' => request('name'),
-            'description' => request('description'),
-            'photos' => request('photos'),
         ]);
 
         return [
@@ -118,9 +95,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy(Brands $brands)
     {
-        $success = $products->delete();
+        $success = $brands->delete();
 
         return [
             'success' => $success

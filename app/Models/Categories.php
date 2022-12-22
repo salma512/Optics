@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Categories extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+       'parent',
+      ];
     Public function products()
     {
         return $this->belongsTo(Products::class);

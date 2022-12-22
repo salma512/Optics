@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Products::all();
+        return Categories::all();
     }
 
     /**
@@ -36,23 +36,14 @@ class ProductsController extends Controller
     public function store()
     {
         request()->validate([
-             'agency_id'=> 'required',
-             'categorie_id'=> 'required',
-             'brand_id' => 'required',
-            'price' => 'required',
             'name' => 'required',
-            'description' => 'required',
-            'photos' => 'required',
+            //'parent' => 'required',
+
         ]);
 
-        return Products::create([
-             'agency_id' => request('agency_id'),
-             'categorie_id' => request('categorie_id'),
-             'brand_id' => request('brand_id'),
-            'price' => request('price'),
+        return Categories::create([
             'name' => request('name'),
-            'description' => request('description'),
-            'photos' => request('photos'),
+            //'parent' => request('parent'),
         ]);
     }
 
@@ -85,26 +76,16 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Products $products)
+    public function update(Categories $categories)
     {
         request()->validate([
-             'agency_id'=> 'required',
-            'categorie_id'=> 'required',
-            'brand_id' => 'required',
-            'price' => 'required',
             'name' => 'required',
-            'description' => 'required',
-            'photos' => 'required',
+            //'parent' => 'required',
         ]);
 
-        $success = $products->update([
-            'agency_id' => request('agency_id'),
-            'categorie_id' => request('categorie_id'),
-            'brand_id' => request('brand_id'),
-            'price' => request('price'),
+        $success = $categories->update([
             'name' => request('name'),
-            'description' => request('description'),
-            'photos' => request('photos'),
+            //'parent' => request('parent'),
         ]);
 
         return [
@@ -118,9 +99,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy(Categories $categories)
     {
-        $success = $products->delete();
+        $success = $categories->delete();
 
         return [
             'success' => $success
