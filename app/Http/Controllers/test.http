@@ -1,0 +1,39 @@
+#GET http://127.0.0.1:8000/api/products HTTP/1.1
+
+
+
+POST http://127.0.0.1:8000/api/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "price":300,
+    "name":"Ray-Ban RB2140 Wayfarer",
+    "description":"Les lunettes de soleil Ray-Ban
+     Ray-Ban RB2140 Wayfarer 661313
+     avec leur monture en Plastique
+     sont idéales pour vous protéger du soleil avec style!
+     ",
+    "photos":"https://image4.cdnsbg.com/1/14/601806_side_2_1663869723464.jpg?width=1200&height=600"
+}
+
+PUT  http://127.0.0.1:8000/api/products/1 HTTP/1.1
+Content-Type: application/json
+
+
+{
+    "price":400,
+    "name":"Ray-Ban RB2140 Wayfarer",
+    "description":"Les lunettes de soleil Ray-Ban
+     Ray-Ban RB2140 Wayfarer 661313
+     avec leur monture en Plastique
+     sont idéales pour vous protéger du soleil avec style!
+     Découvrez plus de 180 marques de lunettes
+     et plus de 80 000 lunettes de vue sur EasyLunettes !
+     De plus, profitez de la livraison gratuite,
+     des verres 1.5 gratuits pour Ray-Ban ,
+     d'une garantie de 2 ans et du meilleur prix garanti
+    lors de vos achats avec nous.",
+    "photos":"https://image4.cdnsbg.com/1/14/601806_side_2_1663869723464.jpg?width=1200&height=600"
+}
+
+DELETE  http://127.0.0.1:8000/api/products/1 HTTP/1.1
