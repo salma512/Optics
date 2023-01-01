@@ -74,7 +74,7 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Brands $brands)
+    public function update(Request $request, Brands $brands)
     {
         request()->validate([
             'name' => 'required',

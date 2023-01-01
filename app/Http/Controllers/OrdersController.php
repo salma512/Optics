@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Orders;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return Categories::all();
+        return Orders::all();
     }
 
     /**
@@ -36,14 +36,17 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => 'required',
-            //'parent' => 'required',
-
+            //'customer_id'=> 'required',
+            'date' => 'required',
+            'status' => 'required',
+            'amount' => 'required',
         ]);
 
-        return Categories::create([
-            'name' => request('name'),
-            //'parent' => request('parent'),
+        return Orders::create([
+            //'customer_id' => request('customer_id'),
+            'date' => request('date'),
+            'status' => request('status'),
+            'amount' => request('amount'),
         ]);
     }
 
@@ -55,7 +58,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        return Orders::find($id);
     }
 
     /**
@@ -76,21 +79,26 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Categories $categories)
+    public function update(Request $request, Orders $orders)
     {
         request()->validate([
-            'name' => 'required',
-            //'parent' => 'required',
+            //'customer_id'=> 'required',
+            'date' => 'required',
+            'status' => 'required',
+            'amount' => 'required',
         ]);
 
-        $success = $categories->update([
-            'name' => request('name'),
-            //'parent' => request('parent'),
+        $success = $orders->update([
+            //'customer_id' => request('customer_id'),
+            'date' => request('date'),
+            'status' => request('status'),
+            'amount' => request('amount'),
         ]);
 
         return [
             'success' => $success
         ];
+
     }
 
     /**
@@ -99,12 +107,14 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categories $categories)
+    public function destroy(Orders $orders)
     {
-        $success = $categories->delete();
+        $success = $orders->delete();
 
         return [
             'success' => $success
         ];
     }
+
+
 }

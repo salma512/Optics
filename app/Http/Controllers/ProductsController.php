@@ -33,12 +33,12 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         request()->validate([
-             'agency_id'=> 'required',
-             'categorie_id'=> 'required',
-             'brand_id' => 'required',
+            // 'agency_id'=> 'required',
+            'categorie_id'=> 'required',
+            'brand_id' => 'required',
             'price' => 'required',
             'name' => 'required',
             'description' => 'required',
@@ -46,9 +46,9 @@ class ProductsController extends Controller
         ]);
 
         return Products::create([
-             'agency_id' => request('agency_id'),
-             'categorie_id' => request('categorie_id'),
-             'brand_id' => request('brand_id'),
+            // 'agency_id' => request('agency_id'),
+            'categorie_id' => request('categorie_id'),
+            'brand_id' => request('brand_id'),
             'price' => request('price'),
             'name' => request('name'),
             'description' => request('description'),
@@ -64,7 +64,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        return Products::find($id);
     }
 
     /**
@@ -85,10 +85,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Products $products)
+    public function update(Request $request,Products $products)
     {
         request()->validate([
-             'agency_id'=> 'required',
+            // 'agency_id'=> 'required',
             'categorie_id'=> 'required',
             'brand_id' => 'required',
             'price' => 'required',
@@ -98,7 +98,7 @@ class ProductsController extends Controller
         ]);
 
         $success = $products->update([
-            'agency_id' => request('agency_id'),
+            // 'agency_id' => request('agency_id'),
             'categorie_id' => request('categorie_id'),
             'brand_id' => request('brand_id'),
             'price' => request('price'),
@@ -125,5 +125,10 @@ class ProductsController extends Controller
         return [
             'success' => $success
         ];
+    }
+
+    public function search($name)
+    {
+        return Products::where('name', 'like', '%'.$name.'%')->get();
     }
 }

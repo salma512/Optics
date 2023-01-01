@@ -39,10 +39,11 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ],
+    \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+    'throttle:api',
+    \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    ],
+
     ];
 
     /**
@@ -64,10 +65,16 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+          'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+          'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+          'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
 
-         'isAdmin' =>\App\Http\Middleware\IsAdmin::class,
+        'isAdmin' =>\App\Http\Middleware\IsAdmin::class,
+
+        'api' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            'throttle:api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        ],
     ];
 }

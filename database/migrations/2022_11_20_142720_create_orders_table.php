@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->date('date');
             $table->string('status');
-            $table->integer('amount');
+            $table->decimal('amount');
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers');
@@ -35,3 +35,4 @@ return new class extends Migration
         Schema::dropIfExists('orders');
     }
 };
+
